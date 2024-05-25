@@ -1,0 +1,15 @@
+{
+  "name": "shop-grocery-items-bill-payment",
+  "version": "1.0.0",
+  "description": "The Web Application that will shop grocery items  show using GET Method. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "git": "https://github.com/apurva313/Shop-Grocery-Items-Bill-Payment",
+  "author": "Apurva Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
