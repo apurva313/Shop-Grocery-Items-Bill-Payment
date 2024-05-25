@@ -1,32 +1,22 @@
 const express = require('express');
+const connectDB = require('./db');
+const dotenv = require('dotenv');
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// grocery items
-const groceries = [
-  { id: 1, name: 'Apples', price: 2.5 },
-  { id: 2, name: 'Bananas', price: 1.5 },
-  { id: 3, name: 'Milk', price: 3.0 },
- 
-];
+// Load environment variables from .env file
+dotenv.config();
+
+const PORT = process.env.PORT || 3000;
+const groceryRoutes = require('./routes/groceryRoutes');
+
+// Connect to MongoDB
+connectDB();
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Route to get all grocery items
-app.get('/api/groceries', (req, res) => {
-  res.json(groceries);
-});
-
-// Route to get a specific grocery item by ID
-app.get('/api/groceries/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const grocery = groceries.find(item => item.id === id);
-  if (!grocery) {
-    return res.status(404).json({ message: 'Grocery item not found' });
-  }
-  res.json(grocery);
-});
+// Use the grocery routes
+app.use('/api', groceryRoutes);
 
 // Start the server
 app.listen(PORT, () => {
